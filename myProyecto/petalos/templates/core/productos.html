@@ -1,0 +1,35 @@
+{% extends "core/base.html" %}
+
+{% block titulo %}
+    Productos - Petalos.cl
+{% endblock titulo %}
+
+{% load static %}
+
+<script src="{% static 'js/carrito.js' %}"></script>
+
+{% block contenido %}
+   <div class="container">
+        <div class="row">
+            
+            
+
+
+            <!-- Elementos generados a partir del JSON -->
+            <main id="items" class="col-sm-8 row">
+            </main>
+            <!-- Carrito -->
+            <aside class="col-sm-4">
+                <h2>Carrito</h2>
+                <!-- Elementos del carrito -->
+                <ul id="carrito" class="list-group"></ul>
+                <hr>
+                <!-- Precio total -->
+                <p class="text-right">Total:&dollar; <span id="total"></span></p>
+                <a href="#" class="btn btn-outline-danger" tabindex="1" role="button"
+                    aria-disabled="false">Comprar xd</a>
+            </aside>
+        </div>
+    </div>
+{% endblock contenido %}
+

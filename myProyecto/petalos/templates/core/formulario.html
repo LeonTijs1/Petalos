@@ -1,0 +1,58 @@
+{% extends "core/base.html" %}
+
+{% block titulo %}
+    Formulario de Ingreso de flores - Petalos.cl
+{% endblock titulo %}
+
+{% load static %}
+
+{% block contenido %}
+        <center>
+        <h1>Registre los datos de la flor a ingresar</h1>
+        </center>
+        <div class="formulario">
+            <form method="POST" action="" id="formulario"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <center>
+                <table border="1">
+                    <tr>
+                        <td colspan="2" style="text-align: center;font-size: 20px;">Registro</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre:</td>
+                        <td>
+                            <input type="text" name="txtNombre" id="txtNombre"> </td>
+                    </tr>
+                    <tr>
+                        <td>Seleccione Imagen de la flor:</td>
+                        <td>
+                            <input type="file" name="imagen">
+                        </td>
+                    </tr>                  
+                    <tr>
+                        <td>Precio:</td>
+                        <td>
+                            <input type="number" name="txtPrecio" id="txtPrecio"> </td>
+                    </tr>
+                    <tr>
+                        <td>Descripcion:</td>
+                        <td>
+                           <textarea name="txtDescripcion"></textarea>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cantidad:</td>
+                        <td>
+                            <input type="number" name="txtCantidad" id="txCantidad"> </td>
+                    </tr>                   
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Grabar">
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </form>
+        </div>
+        <div id="respuesta">{{msg}}</div>
+ {% endblock contenido %}
