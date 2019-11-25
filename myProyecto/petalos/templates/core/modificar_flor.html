@@ -1,0 +1,21 @@
+{% extends "core/base.html" %}
+
+{% block titulo %}
+    Modificar flor - Petalos.cl
+{% endblock titulo %}
+
+{% load static %}
+
+{% block contenido %}
+    <div class="flor">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <center>
+                <table border="1">
+                    {{form.as_table}}                   
+                </table>
+                <input type="submit" value="Modificar">
+            </center>
+        </form>
+    </div>      
+{% endblock contenido %}

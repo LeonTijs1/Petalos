@@ -1,24 +1,13 @@
 {% extends "core/base.html" %}
 
 {% block titulo %}
-    Prueba - Petalos.cl
+    Quienes Somos - Petalos.cl
 {% endblock titulo %}
 
 {% load static %}
 
 {% block contenido %}
-        {% for f in lista %}
-        <div class="flores">
-            <h3>{{f.name}}</h3>
-            <img src="{{f.imagen.url}}" width=100 heigth=100 >
-            <h4>Descripcion:</h4>
-            <p> {{f.descripcion}}</p>
-            <h4>Cantidad:</h4>
-            <p> {{f.cantidad}}</p>
-            <h4>Precio:</h4>
-            <p> ${{f.precio}}</p>
-            <a href="{% url 'ELIMINAR' f.name %}"> Eliminar Flor </a>           
-        </div>
-        {% endfor %}
-       
+        <h2> NUESTRA HISTORIA </h2>
+        <p> {% lorem how_many_paragraphs %} </p>
+        <img src=" {% static 'img/navbar.jpg' %}" alt="">
 {% endblock contenido %}

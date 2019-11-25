@@ -22,7 +22,7 @@ from django.conf.urls.static import static #importar las direcciones estaticas
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('petalos.urls')),#redireccionar hacia archivo URLS
+    path('oauth/',include('social_django.urls',namespace='social')),
 ]
-
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

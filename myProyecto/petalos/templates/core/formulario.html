@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 
 {% block titulo %}
-    Formulario de Ingreso de flores - Petalos.cl
+    Formulario de Ingreso - Petalos.cl
 {% endblock titulo %}
 
 {% load static %}
@@ -21,29 +21,29 @@
                     <tr>
                         <td>Nombre:</td>
                         <td>
-                            <input type="text" name="txtNombre" id="txtNombre"> </td>
+                            <input type="text" name="txtNombre" id="txtNombre" placeholder="Ingrese el nombre de la flor" required> </td>
                     </tr>
                     <tr>
                         <td>Seleccione Imagen de la flor:</td>
                         <td>
-                            <input type="file" name="imagen">
+                            <input type="file" name="imagen" required>
                         </td>
                     </tr>                  
                     <tr>
                         <td>Precio:</td>
                         <td>
-                            <input type="number" name="txtPrecio" id="txtPrecio"> </td>
+                            <input type="number" name="txtPrecio" id="txtPrecio" placeholder="Ingrese el precio" required> </td>
                     </tr>
                     <tr>
                         <td>Descripcion:</td>
                         <td>
-                           <textarea name="txtDescripcion"></textarea>    
+                           <textarea name="txtDescripcion" placeholder="Descripcion general" required></textarea>    
                         </td>
                     </tr>
                     <tr>
                         <td>Cantidad:</td>
                         <td>
-                            <input type="number" name="txtCantidad" id="txCantidad"> </td>
+                            <input type="number" name="txtCantidad" id="txCantidad" placeholder="Cantidad a ingresar" required> </td>
                     </tr>                   
                     <tr>
                         <td colspan="2">
@@ -52,7 +52,10 @@
                     </tr>
                 </table>
             </center>
-        </form>
+            </form>
         </div>
+        <center>
+        <p style="color:red;"> *Todos los campos son obligatorios</p>
+        </center>
         <div id="respuesta">{{msg}}</div>
  {% endblock contenido %}

@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 
 {% block titulo %}
-    Productos - Petalos.cl
+    Galeria de productos - Petalos.cl
 {% endblock titulo %}
 
 {% load static %}
@@ -9,12 +9,23 @@
 <script src="{% static 'js/carrito.js' %}"></script>
 
 {% block contenido %}
-   <div class="container">
-        <div class="row">
-            
-            
-
-
+    <div class="container">
+    <div class="row">
+        {% for f in lista %}
+        <div class="flores">
+            <h3>{{f.name}}</h3>
+            <img src="{{f.imagen.url}}" width=150 heigth=150 >
+            <h4>Descripcion:</h4>
+            <p> {{f.descripcion}}</p>
+            <h4>Cantidad:</h4>
+            <p> {{f.cantidad}}</p>
+            <h4>Precio:</h4>
+            <p> ${{f.precio}}</p>
+            <a href="#"> Agregar al Carro </a>   
+        </div>
+        {% endfor %}
+    </div>
+        <div class="row">         
             <!-- Elementos generados a partir del JSON -->
             <main id="items" class="col-sm-8 row">
             </main>

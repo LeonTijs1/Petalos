@@ -34,7 +34,6 @@
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item active">
@@ -43,32 +42,32 @@
                         </a>
                     </li>
                     <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'REGISTRO' %}">Registro</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'LOG' %}">Login</a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="{% url 'PROD' %}">Productos</a>                       
+                    </li>                     
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'WHO' %}">Quienes somos</a>                       
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'FORM' %}">Formulario de Ingreso</a>                       
+                    </li>                   
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'ADMIN' %}">Admistración</a>                       
+                    </li> 
+                    <li>
+                    <a href="{% url 'LOGOUT' %}">Cerrar Sesión</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="">Cumpleaños</a>                       
-                    </li>       
-                    <li class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            Ocasión
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">por si beso</a>
-                            <a class="dropdown-item" href="#">por si abrazo</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">porciacaso</a>
-                        </div>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'WHO' %}">Quienes somos/Prueba</a>                       
-                    </li>
+                        <a>Bienvenido {{ user.username }}</a>                   
+                    </li>                               
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="hacer la buscacion" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Buscar</button>
                 </form>
             </div>
@@ -77,6 +76,7 @@
 <!-- aqui termina la barra de navegacion ┘-->
 
 <!-- aqui empieza el conterido en general :3 ┘-->
+
 {% block contenido %}
 
 {% endblock contenido %}
@@ -85,6 +85,7 @@
 
 
 <!-- aqui comienza el footer ┐ -->
+<div>
 <footer>
     <div class="card text-white bg-dark">
         <div class="card-header text-white bg-dark">Llamenos al +569 9988 7766</div>   
@@ -104,6 +105,7 @@
         <div class="card-footer text-muted">2 days ago</div>    
     </div>
 </footer>
+</div>
 </body>
 
 </html>

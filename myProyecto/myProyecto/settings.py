@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'petalos.apps.PetalosConfig',
+    'social_django', #conexion a facebook#
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'myProyecto.urls'
@@ -63,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect'
             ],
         },
     },
@@ -104,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'America/Santiago'
 
@@ -121,3 +125,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+#Definicion de modelos internos para la autentificacion
+AUTHENCATION_BACKENDS=(
+    'social_core.backends.facebook.FacebookOAuth',
+    'django.contrib.auth.blackends.ModelBackend',
+)
+
+#La direccion donde va al inciar
+SOCIAL_AUTH_LOGIN_REDIRECT_URL='/'
+
+#Claves de la aplicacion 
+
+#Identificador de la app
+SOCIAL_AUTH_FACEBOOK_KEY='778787882564830'
+#Clave secreta de la app
+SOCIAL_AUTH_FACEBOOK_SECRET='c0a28cb6bd9742adb925601f6bef8917'
