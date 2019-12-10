@@ -25,11 +25,11 @@
 
 </head>
 
-<body >
+<body style="background-color:#ffc0f8;" >
 
     <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-            <a class="navbar-brand" href="#" ><img src=" {% static 'img/1646027-9c27b0.svg' %}" width="30" height="30" class="d-inline-block align-top" alt="">Petalos</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light text-light " style="background: linear-gradient(176deg, rgba(100,0,91,1) 0%, rgba(255,0,228,1) 100%);">
+            <a class="navbar-brand text-light" href="{% url 'HOME' %}" ><img src=" {% static 'img/1646027-9c27b0.svg' %}" width="30" height="30" class="d-inline-block align-top text-light" alt="">Petalos</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -37,44 +37,60 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'HOME' %}">Home
+                        <a class="nav-link text-light" href="{% url 'HOME' %}">Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'REGISTRO' %}">Registro</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'LOG' %}">Login</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'PROD' %}">Productos</a>                       
-                    </li>                     
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'WHO' %}">Quienes somos</a>                       
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'FORM' %}">Formulario de Ingreso</a>                       
-                    </li>                   
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'ADMIN' %}">Admistración</a>                       
+                        <a class="nav-link text-light" href="{% url 'PROD' %}">Productos</a>                       
+                    </li>                                        
+                    <li>                  
+                        <a class="nav-link text-light" href="{% url 'CARRO' %}"> Carro de Compras</a>
                     </li> 
-                    <li>
-                    <a href="{% url 'LOGOUT' %}">Cerrar Sesión</a>
-                    </li>
                     <li class="nav-item active">
-                        <a>Bienvenido {{ user.username }}</a>                   
-                    </li>                               
+                        <a class="nav-link text-light" href="{% url 'WHO' %}">Quienes somos</a>                       
+                    </li>                   
+                    {% if user.is_staff %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Panel de Control 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'FORM' %}">Formulario de Ingreso</a>
+                        <a class="dropdown-item" href="{% url 'ADMI' %}">Admistración</a> 
+                        <a class="dropdown-item" href="{% url 'VER' %}">Versiones</a>  
+                        </div>
+                    </li>  
+                    {% endif %}                    
+                    {% if user.is_authenticated %}                    
+                    <li class="nav-item active">                    
+                        <a class="nav-link text-light" href="">Bienvenido {{user.username}} :D</a>
+                    </li>      
+                    <li class="nav-item active">    
+                        <a href="{% url 'logout' %}" class="btn btn-outline-light"> Cerrar sesión </a> 
+                    </li>                                         
+                    {% else %}                   
+                    <li class="nav-item active">  
+                        <a href="{% url 'LOGIN' %}" class="btn btn-outline-light"> Iniciar sesión </a> 
+                    </li>    
+                    <li class="nav-item active">
+                    <a href="{% url 'REG_USER' %}" class="btn btn-outline-light"> Registrate </a>
+                    </li>
+                    {% endif %}                   
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Buscar</button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar Flor" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Buscar</button>
                 </form>
             </div>
         </nav>
     </header>
 <!-- aqui termina la barra de navegacion ┘-->
-
+<div class="text-center">
+  <h1>Floreria Petalos</h5>
+        <p>Venta de Flores exoticas y de otro estilo al estilo actual que usted conoce</p>
+        <br>
+</div>
 <!-- aqui empieza el conterido en general :3 ┘-->
 
 {% block contenido %}
@@ -85,13 +101,16 @@
 
 
 <!-- aqui comienza el footer ┐ -->
+<div class="text-center">
+  <img src="{% static 'img/delivery-trip.jpg' %}" class="rounded" alt="...">
+</div>
 <div>
 <footer>
-    <div class="card text-white bg-dark">
-        <div class="card-header text-white bg-dark">Llamenos al +569 9988 7766</div>   
+    <div class="card text-white bg-secondary d-block w-100" style="margin: 0px; position: absolute;" with="100%">
+        <div class="card-header text-white bg-secondary">Llamenos al +569 9988 7766</div>   
         <div class="grid">
             <div class="item1">
-                <div class="card bg-light mb-3 text-white bg-dark " style="max-width: 18rem ;">
+                <div class="card mb-3 text-white bg-secondary " style="max-width: 18rem ;">
                     <h5 class="card-header">Contactenos</h5>
                     <div class="card-body">
                         <p class="card-text"><img src="{% static 'img/facebook.svg' %} " width="30" height="30" class="d-inline-block align-top" alt=""> Petalos oficial</p>
@@ -99,10 +118,9 @@
                         <p class="card-text"><img src="{% static 'img/whatsapp.svg' %} " width="30" height="30" class="d-inline-block align-top" alt=""> +569 9988 7766</p>
                     </div>
                 </div>
-            </div>
-            <a href="#" class="btn btn-secondary">Hazte Socio</a>
+            </div>           
         </div>
-        <div class="card-footer text-muted">2 days ago</div>    
+        <div class="card-footer text-light">created by Leon and twomorrow</div>    
     </div>
 </footer>
 </div>

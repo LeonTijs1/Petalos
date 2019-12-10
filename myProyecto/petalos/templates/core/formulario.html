@@ -1,27 +1,27 @@
 {% extends "core/base.html" %}
 
 {% block titulo %}
-    Formulario de Ingreso - Petalos.cl
+    Formulario de Ingreso de flores - Petalos.cl
 {% endblock titulo %}
 
 {% load static %}
 
 {% block contenido %}
         <center>
-        <h1>Registre los datos de la flor a ingresar</h1>
+        <h1>Registre los datos de la flor</h1>
         </center>
-        <div class="formulario">
+        <div class="formulario container table table-hover card border-danger">
             <form method="POST" action="" id="formulario"  enctype="multipart/form-data">
             {% csrf_token %}
             <center>
-                <table border="1">
+                <table>
                     <tr>
                         <td colspan="2" style="text-align: center;font-size: 20px;">Registro</td>
                     </tr>
                     <tr>
                         <td>Nombre:</td>
                         <td>
-                            <input type="text" name="txtNombre" id="txtNombre" placeholder="Ingrese el nombre de la flor" required> </td>
+                            <input type="text" name="txtNombre" id="txtNombre" placeholder="Inserte el nombre" required> </td>
                     </tr>
                     <tr>
                         <td>Seleccione Imagen de la flor:</td>
@@ -32,30 +32,29 @@
                     <tr>
                         <td>Precio:</td>
                         <td>
-                            <input type="number" name="txtPrecio" id="txtPrecio" placeholder="Ingrese el precio" required> </td>
+                            <input type="number" name="txtPrecio" id="txtPrecio" placeholder="Inserte el precio" required> </td>
                     </tr>
                     <tr>
                         <td>Descripcion:</td>
                         <td>
-                           <textarea name="txtDescripcion" placeholder="Descripcion general" required></textarea>    
+                           <textarea name="txtDescripcion" placeholder="Ingrese la descripción" required></textarea>    
                         </td>
                     </tr>
                     <tr>
                         <td>Cantidad:</td>
                         <td>
-                            <input type="number" name="txtCantidad" id="txCantidad" placeholder="Cantidad a ingresar" required> </td>
+                            <input type="number" name="txtCantidad" id="txCantidad" placeholder="Ingrese la cantidad total"> </td>
                     </tr>                   
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Grabar">
+                            <input class="btn btn-dark" type="submit" value="Grabar">
+                            <input class="btn btn-secondary" type="reset" value="Limpiar">
                         </td>
-                    </tr>
+                    </tr>                   
                 </table>
+                <p style="color:red;">*Todos los campos son OBLIGATORIOS</p>
             </center>
             </form>
         </div>
-        <center>
-        <p style="color:red;"> *Todos los campos son obligatorios</p>
-        </center>
-        <div id="respuesta">{{msg}}</div>
+        <br>
  {% endblock contenido %}

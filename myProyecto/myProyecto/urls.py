@@ -18,11 +18,12 @@ from django.urls import path,include #permite incluir ubicacion de archivo
 from django.conf import settings #importar el archivo de configuracion del proyecto
 from django.conf.urls.static import static #importar las direcciones estaticas
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('petalos.urls')),#redireccionar hacia archivo URLS
-    path('oauth/',include('social_django.urls',namespace='social')),
+    path('', include('petalos.urls')),#redireccionar hacia archivo URLS
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('oauth/', include('social_django.urls', namespace='social'))
 ]
+
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

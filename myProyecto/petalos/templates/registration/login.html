@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+
+{% block titulo %}
+    Inicio de sesión - Petalos.cl
+{% endblock titulo %}    
+
+{% block contenido %}
+<center>
+    <h1> ¡Bienvenidos a Petalos!,¿Polen? </h1>
+        <form action="" method="POST">
+         {% csrf_token %}
+        <table class="container table table-hover card border-danger">
+            <tr>
+                <td colspan="2">Formulario de Acceso</td>                
+            </tr>
+            <tr>
+                <td>Usuario:</td>
+                <td>   <input type="text" name="txtUsuario">  </td>
+            </tr>
+            <tr>
+                <td>Contraseña:</td>
+                <td>  <input type="password" name="txtPass">  </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input class="btn btn-dark" type="submit" value="Iniciar">
+                    <input class="btn btn-secondary" type="reset" value="Limpiar">
+                </td>
+            </tr>
+        </table>
+     </form>
+</center>
+<br>
+<center>
+<p>Si todavia no te haz regristrado</p><a href="{% url 'REG_USER' %}"> HAZLO AQUI</a>
+</center>
+<br>    
+{% endblock contenido %}

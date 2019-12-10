@@ -1,46 +1,38 @@
 {% extends "core/base.html" %}
 
 {% block titulo %}
-    Galeria de productos - Petalos.cl
+    Flores a la venta - Petalos.cl
 {% endblock titulo %}
 
 {% load static %}
 
-<script src="{% static 'js/carrito.js' %}"></script>
-
 {% block contenido %}
+<center>
+<h1> Listado de toda las compras</h1>
+<center>
     <div class="container">
-    <div class="row">
-        {% for f in lista %}
-        <div class="flores">
-            <h3>{{f.name}}</h3>
-            <img src="{{f.imagen.url}}" width=150 heigth=150 >
-            <h4>Descripcion:</h4>
-            <p> {{f.descripcion}}</p>
-            <h4>Cantidad:</h4>
-            <p> {{f.cantidad}}</p>
-            <h4>Precio:</h4>
-            <p> ${{f.precio}}</p>
-            <a href="#"> Agregar al Carro </a>   
+        <div class="row">
+            {% for f in lista %}
+            <div class="flores">
+                <h3>{{f.name}}</h3>
+                <img src="{{f.imagen.url}}" width=150 heigth=150 >
+                <h4>Descripcion:</h4>
+                <p> {{f.descripcion}}</p>
+                <h4>Cantidad:</h4>
+                <p> {{f.cantidad}}</p>
+                <h4>Precio:</h4>
+                <p> ${{f.precio}}</p>
+                {% if user.is_authenticated %}
+                    <a class="btn btn-success" href="{% url 'AGREGAR_CARRO' f.name %}">Agregar Flor</a>
+                {% else %}
+                    <p> Tienes que inciar sesión primero para poder comprar</p>
+                    <p> Puedes inicar sesión en el boton de abajo :3</p>
+                    <a class="btn btn-success" href="{% url 'LOGIN' %}"> Iniciar Sesión </a>
+                {% endif %}
+            </div>
+            {% endfor %}   
         </div>
-        {% endfor %}
-    </div>
-        <div class="row">         
-            <!-- Elementos generados a partir del JSON -->
-            <main id="items" class="col-sm-8 row">
-            </main>
-            <!-- Carrito -->
-            <aside class="col-sm-4">
-                <h2>Carrito</h2>
-                <!-- Elementos del carrito -->
-                <ul id="carrito" class="list-group"></ul>
-                <hr>
-                <!-- Precio total -->
-                <p class="text-right">Total:&dollar; <span id="total"></span></p>
-                <a href="#" class="btn btn-outline-danger" tabindex="1" role="button"
-                    aria-disabled="false">Comprar xd</a>
-            </aside>
-        </div>
-    </div>
+    </div>    
+    <br>
 {% endblock contenido %}
 

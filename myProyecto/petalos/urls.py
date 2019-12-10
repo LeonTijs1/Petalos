@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from .views import home,productos,formulario,quienes,eliminar_flor,administrar,modificar,modificar_flor,login,registro_usuario,cerrar_sesion
+from .views import *
+
 
 urlpatterns = [
     path('',home,name='HOME'),   
@@ -9,9 +10,14 @@ urlpatterns = [
     path('quienes/',quienes,name='WHO'),
     path('eliminar_flor/<id>/',eliminar_flor,name='ELIMINAR'),
     path('modificar_flor/<id>/',modificar_flor,name='MODIFICAR'),
-    path('administrar/',administrar,name='ADMIN'),
-    path('modificar/',modificar,name='MOD'),
-    path('login/',login,name='LOG'),
-    path('registro/',registro_usuario,name='REGISTRO'),
-    path('cerrar_sesion/',cerrar_sesion,name='LOGOUT'),   
+    path('admistracion/',admistracion,name='ADMI'),
+    path('registro/',registro_usuario,name='REG_USER'),
+    path('version/',version,name='VER'),
+    path('login/',login,name='LOGIN'),
+    path('agregar_carro/<id>/',carro_compras,name='AGREGAR_CARRO'),
+    path('carro/',carros,name='CARRO'),
+    path('carro_mas/<id>/',carro_compras_mas,name='CARRO_MAS'),
+    path('carro_menos/<id>/',carro_compras_menos,name='CARRO_MENOS'),
+    path('grabar_carro/',grabar_carro,name='GRABAR_CARRO'),
+
 ]

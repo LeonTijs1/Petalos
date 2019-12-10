@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+
+{% block titulo %}
+    Administración de flores - Petalos.cl
+{% endblock titulo %}
+
+{% load static %}
+
+{% block contenido %}
+    <ul class="navbar-nav m-auto">
+    <center>
+        <li class="nav-item active">
+            <h3 class="nav-link text-dark">{{msg}}</h3>                       
+        </li>  
+    </center>
+    </ul>
+    <div class="row">
+        {% for f in lista %}
+        <div class="flores">
+            <h3>{{f.name}}</h3>
+            <img src="{{f.imagen.url}}" width=100 heigth=100 >
+            <h4>Descripcion:</h4>
+            <p> {{f.descripcion}}</p>
+            <h4>Cantidad:</h4>
+            <p> {{f.cantidad}}</p>            
+            {% if f.cantidad == 0 %}
+                <p> Estado: No Disponible :c </p>
+            {% else %}
+                <p> Estado: Disponible :D </p>
+            {% endif %}          
+            <h4>Precio:</h4>
+            <p> ${{f.precio}}</p>
+            <a class="btn btn-success" href="{% url 'MODIFICAR' f.name %}"> Modificar Flor </a>  
+            <a class="btn btn-danger" href="{% url 'ELIMINAR' f.name %}"> Eliminar Flor </a>           
+        </div>
+        {% endfor %}  
+    </div>  
+{% endblock contenido %}

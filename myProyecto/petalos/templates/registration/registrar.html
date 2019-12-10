@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+
+{% block titulo %}
+    Registro de Usuario - Petalos.cl
+{% endblock titulo %}
+
+{% load static %}
+
+{% block contenido %}
+<center>
+    <h2> ¡Bienvenidos a Petalos!,¿Flores? </h2>
+    <br>            
+        <form action="" method="POST">
+            {% csrf_token %}
+            <table class="container table table-hover card border-danger">
+                {{form.as_table}}
+            </table>
+            <input class="btn btn-secondary" type="reset" value="Limpiar">
+            <input class="btn btn-dark" type="submit" value="Registrar">
+        </form>  
+ </center>
+ <br>
+{% endblock contenido %}

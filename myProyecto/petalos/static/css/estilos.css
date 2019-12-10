@@ -39,6 +39,12 @@ filter: opacity(50%);
   width: 250px;float: left;
   padding: 25px;text-align: center;margin: 15px;
 }
+.compras {
+  background-color: skyblue;
+  width: 250px;float: left;
+  padding: 25px;text-align: center;margin: 15px;
+}
+
 .footer {
   float: left;
 }

@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+
+{% block titulo %}
+    Carrito de Compras - Cine Romeo
+{% endblock titulo %}
+
+{% load static %}
+
+{% block contenido %}
+
+<!-- sector del menu -->
+<center>
+<h2>Carrito de Compras</h2>
+<div class="container table table-hover card border-danger" style="max-width: 32rem;">
+    <table border="1">
+        <tr>
+            <td>Nombre</td>
+            <td>Precio</td>
+            <td>Cantidad</td>
+            <td>Total</td>
+            <td>Operacion</td>
+        </tr>
+        {% for l in x %}
+        <tr>
+            <td>{{l.nombre}}</td>
+            <td>{{l.precio}}</td>
+            <td>{{l.cantidad}}</td>
+            <td>{{l.total}}</td>
+            <td>
+                <input class="btn btn-success" type="button" value="+" onclick="javascript:location.href='{% url 'CARRO_MAS' l.nombre %}'" >
+                <input class="btn btn-danger" type="button" value="-" onclick="javascript:location.href='{% url 'CARRO_MENOS' l.nombre %}'" >
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3">Total</td>  
+            <td>{{total}}</td>  
+            <td>
+                <input class="btn btn-warning" type="button" value="Efectuar compra" onclick="javascript:location.href='{% url 'GRABAR_CARRO' %}'" >
+            </td>
+        </tr>
+    </table>
+</div>
+{{mensaje}}
+</center>
+{% endblock contenido %}
