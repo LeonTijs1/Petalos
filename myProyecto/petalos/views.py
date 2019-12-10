@@ -70,6 +70,10 @@ def admistracion(request):
     flores=Flor.objects.all()
     return render(request,'core/admistracion.html',{'lista':flores})
 
+@login_required
+def version(request):
+    return render(request,'core/version.html')
+
 def registro_usuario(request):
     data = {
         'form':CustomUserForm()
@@ -82,22 +86,17 @@ def registro_usuario(request):
             username = formulario.cleaned_data['username']
             password = formulario.cleaned_data['password1']
             user = authenticate(username=username, password=password)
+            request.session["carritox"] = []       
             login_autent(request, user)
             return redirect(to='HOME')            
     return render(request,'registration/registrar.html', data)
-
-@login_required
-def version(request):
-    return render(request,'core/version.html')
 
 def login(request):
     if request.POST:
         usuario=request.POST.get("txtUsuario")
         password=request.POST.get("txtPass")
         us=authenticate(request,username=usuario,password=password)
-        msg=''    
         request.session["carritox"] = []        
-        print('realizado')
         if us is not None and us.is_active:
             login_autent(request,us)#autentificacion de login            
             return render(request,'core/index.html')
