@@ -13,7 +13,22 @@
     <div class="container">
         <div class="row">
             {% for f in lista %}
-            <div class="flores">
+            <div class="flores" style="border-radius: 31px 125px 26px 26px;
+-moz-border-radius: 31px 125px 26px 26px;
+-webkit-border-radius: 31px 125px 26px 26px;
+border: 0px solid #4d304d;
+background: rgba(236,197,237,1);
+background: -moz-linear-gradient(top, rgba(236,197,237,1) 0%, rgba(198,75,209,1) 59%, rgba(172,39,184,1) 79%, rgba(240,141,232,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(236,197,237,1)), color-stop(59%, rgba(198,75,209,1)), color-stop(79%, rgba(172,39,184,1)), color-stop(100%, rgba(240,141,232,1)));
+background: -webkit-linear-gradient(top, rgba(236,197,237,1) 0%, rgba(198,75,209,1) 59%, rgba(172,39,184,1) 79%, rgba(240,141,232,1) 100%);
+background: -o-linear-gradient(top, rgba(236,197,237,1) 0%, rgba(198,75,209,1) 59%, rgba(172,39,184,1) 79%, rgba(240,141,232,1) 100%);
+background: -ms-linear-gradient(top, rgba(236,197,237,1) 0%, rgba(198,75,209,1) 59%, rgba(172,39,184,1) 79%, rgba(240,141,232,1) 100%);
+background: linear-gradient(to bottom, rgba(236,197,237,1) 0%, rgba(198,75,209,1) 59%, rgba(172,39,184,1) 79%, rgba(240,141,232,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ecc5ed', endColorstr='#f08de8', GradientType=0 );
+-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+">
                 <h3>{{f.name}}</h3>
                 <img src="{{f.imagen.url}}" width=150 heigth=150 >
                 <h4>Descripcion:</h4>
@@ -23,11 +38,35 @@
                 <h4>Precio:</h4>
                 <p> ${{f.precio}}</p>
                 {% if user.is_authenticated %}
-                    <a class="btn btn-success" href="{% url 'AGREGAR_CARRO' f.name %}">Agregar Flor</a>
+                    <a class="btn" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+background: rgba(252,234,187,1);
+background: -moz-linear-gradient(top, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(252,234,187,1)), color-stop(50%, rgba(252,205,77,1)), color-stop(51%, rgba(248,181,0,1)), color-stop(100%, rgba(251,223,147,1)));
+background: -webkit-linear-gradient(top, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+background: -o-linear-gradient(top, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+background: -ms-linear-gradient(top, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+background: linear-gradient(to bottom, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93', GradientType=0 );
+" href="{% url 'AGREGAR_CARRO' f.name %}">Agregar Flor</a>
                 {% else %}
                     <p> Tienes que inciar sesión primero para poder comprar</p>
                     <p> Puedes inicar sesión en el boton de abajo :3</p>
-                    <a class="btn btn-success" href="{% url 'LOGIN' %}"> Iniciar Sesión </a>
+                    <a class="btn" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+background: rgba(252,234,187,1);
+background: -moz-linear-gradient(top, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(252,234,187,1)), color-stop(50%, rgba(252,205,77,1)), color-stop(51%, rgba(248,181,0,1)), color-stop(100%, rgba(251,223,147,1)));
+background: -webkit-linear-gradient(top, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+background: -o-linear-gradient(top, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+background: -ms-linear-gradient(top, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+background: linear-gradient(to bottom, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93', GradientType=0 );
+" href="{% url 'LOGIN' %}"> Iniciar Sesión </a>
                 {% endif %}
             </div>
             {% endfor %}   

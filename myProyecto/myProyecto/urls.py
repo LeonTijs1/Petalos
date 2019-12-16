@@ -22,7 +22,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('petalos.urls')),#redireccionar hacia archivo URLS
     path('accounts/', include('django.contrib.auth.urls')),
-    path('oauth/', include('social_django.urls', namespace='social'))
+    path('oauth/', include('social_django.urls', namespace='social')),
+    path('', include('pwa.urls')),
+
+
 ]
 
 if settings.DEBUG:

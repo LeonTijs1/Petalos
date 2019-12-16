@@ -9,3 +9,4 @@ v.0.1.4: Pequeños arreglos en cuanto al area grafica, colores en el navar, arre
 v.0.1.5: Se agrega carro de compras, se hacen mejoras a la visual como tambien al orden interno, 
 y se pre instalo el inicio de sesion via facebook en el codigo interno
 v.0.1.6: Tablas boostrap, aclarado de footer, colores en los botones
+v.0.1.9: integracion de webservice

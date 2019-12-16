@@ -25,7 +25,7 @@ SECRET_KEY = '2st+)6e*@&j-7q0pv#wbq5(@)kye#rl6y2*#lmqv(%ehaa(dv-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'petalos.apps.PetalosConfig',
     'social_django',
+    'rest_framework',
+    'pwa',
+    "fcm_django",
 ]
 
 MIDDLEWARE = [
@@ -142,3 +145,19 @@ AUTHENTICATION_BACKENDS = (
 'django.contrib.auth.backends.ModelBackend',
 )
 
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'serviceworker.js')
+
+# Notificaicones PUSH
+
+FCM_DJANGO_SETTINGS = {
+        "APP_VERBOSE_NAME": "petalos",
+         # default: _('FCM Django')
+        "FCM_SERVER_KEY": "AIzaSyBgp64lIVoYVqklugo604_DsXfPympYCmM",
+         # true if you want to have only one active device per registered user at a time
+         # default: False
+        "ONE_DEVICE_PER_USER": False,
+         # devices to which notifications cannot be sent,
+         # are deleted upon receiving error response from FCM
+         # default: False
+        "DELETE_INACTIVE_DEVICES": True,
+}

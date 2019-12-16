@@ -15,8 +15,101 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        <script src="https://apps.elfsight.com/p/platform.js" defer></script>
     <LINK REL=StyleSheet HREF="{% static 'css/estilos.css' %}" TYPE="text/css" MEDIA=screen>
-    
+
+    <!-- Inicio de Firebase/notificaciones push -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBgp64lIVoYVqklugo604_DsXfPympYCmM",
+        authDomain: "petalos-chaval.firebaseapp.com",
+        databaseURL: "https://petalos-chaval.firebaseio.com",
+        projectId: "petalos-chaval",
+        storageBucket: "petalos-chaval.appspot.com",
+        messagingSenderId: "570435480699",
+        appId: "1:570435480699:web:c58794f0ac8c316f2bc6de"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    let messaging = firebase.messaging();
+
+    // enlace 
+    navigator.serviceWorker
+    .register('./serviceworker.js')
+    .then(function(register) {
+
+        messaging.useServiceWorker(register);
+
+        // solicitud de permiso para las notificaciones
+        messaging.requestPermission()
+        .then(function() {
+            console.log("si acepto recibir notificaciones")
+
+            return messaging.getToken();
+        })
+        .then(function(token){
+            console.log(token);
+
+            // guardar token
+            fetch('guardar-token/', {
+                method: 'post',
+                headers:{
+                    'Content-Type':'application/json',
+                    'Accept':'application/json'
+                },
+                body:JSON.stringify({
+                    'token':token
+                })
+            })
+            .then(function(resultado){
+                console.log("Token guardado :D")
+            })
+            .catch(function(e){
+                console.log("El token no se pudo guarda </3")
+            })
+        })
+
+        .catch(function(e) {
+            console.log("No acepto nah")
+        })
+
+    })
+
+    messaging.onMessage(function(payload) {
+        console.log("ha llegado wallace!");
+        
+        let data = payload;
+        console.log(data);
+
+        let title = payload.notification.title;
+
+        let options = {
+            body:payload.notification.body,
+            icon:payload.notification.icon
+        }
+
+        let mensaje = new Notification(title, options);
+    });
+
+</script>
+
+<!-- Fin de Firebase/notificaciones push -->
+
+
+    {% load pwa %}
+
+{% progressive_web_app_meta %}
+
     <title>
     {% block titulo %}
     
@@ -91,39 +184,55 @@
         <p>Venta de Flores exoticas y de otro estilo al estilo actual que usted conoce</p>
         <br>
 </div>
-<!-- aqui empieza el conterido en general :3 ┘-->
+
+
+<!-- aqui empieza el conterido en general :3 -->
 
 {% block contenido %}
 
 {% endblock contenido %}
 
-<!-- aqui termina el conterido en general :3 ┘-->
+<!-- aqui termina el conterido en general :3 -->
 
-
+<div class="elfsight-app-d6c0f1a5-c6ba-4e84-9fc1-ee5f189de626"></div>
 <!-- aqui comienza el footer ┐ -->
-<div class="text-center">
-  <img src="{% static 'img/delivery-trip.jpg' %}" class="rounded" alt="...">
-</div>
-<div>
+
+<div with="100%">
 <footer>
-    <div class="card text-white bg-secondary d-block w-100" style="margin: 0px; position: absolute;" with="100%">
-        <div class="card-header text-white bg-secondary">Llamenos al +569 9988 7766</div>   
-        <div class="grid">
-            <div class="item1">
-                <div class="card mb-3 text-white bg-secondary " style="max-width: 18rem ;">
-                    <h5 class="card-header">Contactenos</h5>
-                    <div class="card-body">
+    <div class="bd-footer text-muted" style="border-radius: 0px 0px 0px 0px;
+        -moz-border-radius: 0px 0px 0px 0px;
+        -webkit-border-radius: 0px 0px 0px 0px;
+        border: 0px solid #000000;
+        margin: 0px; position: absolute; 
+        
+        background: rgba(171,80,151,1);
+        background: -moz-linear-gradient(top, rgba(171,80,151,1) 0%, rgba(130,0,93,1) 6%, rgba(148,55,125,1) 28%, rgba(115,0,82,1) 33%, rgba(128,3,92,1) 72%, rgba(140,52,118,1) 86%, rgba(163,41,122,1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(171,80,151,1)), color-stop(6%, rgba(130,0,93,1)), color-stop(28%, rgba(148,55,125,1)), color-stop(33%, rgba(115,0,82,1)), color-stop(72%, rgba(128,3,92,1)), color-stop(86%, rgba(140,52,118,1)), color-stop(100%, rgba(163,41,122,1)));
+        background: -webkit-linear-gradient(top, rgba(171,80,151,1) 0%, rgba(130,0,93,1) 6%, rgba(148,55,125,1) 28%, rgba(115,0,82,1) 33%, rgba(128,3,92,1) 72%, rgba(140,52,118,1) 86%, rgba(163,41,122,1) 100%);
+        background: -o-linear-gradient(top, rgba(171,80,151,1) 0%, rgba(130,0,93,1) 6%, rgba(148,55,125,1) 28%, rgba(115,0,82,1) 33%, rgba(128,3,92,1) 72%, rgba(140,52,118,1) 86%, rgba(163,41,122,1) 100%);
+        background: -ms-linear-gradient(top, rgba(171,80,151,1) 0%, rgba(130,0,93,1) 6%, rgba(148,55,125,1) 28%, rgba(115,0,82,1) 33%, rgba(128,3,92,1) 72%, rgba(140,52,118,1) 86%, rgba(163,41,122,1) 100%);
+        background: linear-gradient(to bottom, rgba(171,80,151,1) 0%, rgba(130,0,93,1) 6%, rgba(148,55,125,1) 28%, rgba(115,0,82,1) 33%, rgba(128,3,92,1) 72%, rgba(140,52,118,1) 86%, rgba(163,41,122,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ab5097', endColorstr='#a3297a', GradientType=0 );
+        " with="100%">
+        <div class="card-header text-white">Llamenos al +569 9988 7766</div>
+           
+            <h5 class="card-header">Contactenos</h5>
+                <div class="card-body">
                         <p class="card-text"><img src="{% static 'img/facebook.svg' %} " width="30" height="30" class="d-inline-block align-top" alt=""> Petalos oficial</p>
                         <p class="card-text"><img src="{% static 'img/instagram.svg' %} " width="30" height="30" class="d-inline-block align-top" alt=""> _Petalos_</p>
                         <p class="card-text"><img src="{% static 'img/whatsapp.svg' %} " width="30" height="30" class="d-inline-block align-top" alt=""> +569 9988 7766</p>
-                    </div>
                 </div>
-            </div>           
-        </div>
-        <div class="card-footer text-light">created by Leon and twomorrow</div>    
+                    <ul class="bd-footer-links">
+
+                    <svg width="100%" height="0">
+                        <line x1="0" y1="0" x2="100%" y2="0" stroke="#aaaaaa" />
+                    </svg> 
+        <div class="card-footer text-muted">created by Leon and twomorrow</div>  
+         
     </div>
 </footer>
 </div>
+
 </body>
 
 </html>

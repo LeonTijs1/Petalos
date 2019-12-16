@@ -6,6 +6,17 @@ from django.contrib.auth.decorators import login_required,permission_required
 from django.contrib.auth import authenticate,logout,login as login_autent
 from .clases import elemento
 
+# rest_framework
+from rest_framework import viewsets
+from .serializers import FlorSerializer, CompraSerializer  
+
+#PUSH
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, HttpResponseBadRequest
+from django.core import serializers
+import json
+from fcm_django.models import FCMDevice
 
 # Create your views here.
 def home(request):
@@ -33,6 +44,16 @@ def formulario(request):
         )
         #guarda los datos de la flor   
         flor.save()
+
+        # todos los dispositivos
+
+        dispositivos = FCMDevice.objects.filter(active=True)
+        dispositivos.send_message(
+            title="Nueva Flor Disponible :D",
+            body="Para ti ha llegado " + (flor.name) ,
+            icon="/static/core/img/logo.png"
+        )
+
         return redirect(to='ADMI')
     return render(request,'core/formulario.html')
 
@@ -70,6 +91,10 @@ def admistracion(request):
     flores=Flor.objects.all()
     return render(request,'core/admistracion.html',{'lista':flores})
 
+@login_required
+def version(request):
+    return render(request,'core/version.html')
+
 def registro_usuario(request):
     data = {
         'form':CustomUserForm()
@@ -82,22 +107,17 @@ def registro_usuario(request):
             username = formulario.cleaned_data['username']
             password = formulario.cleaned_data['password1']
             user = authenticate(username=username, password=password)
+            request.session["carritox"] = []       
             login_autent(request, user)
             return redirect(to='HOME')            
     return render(request,'registration/registrar.html', data)
-
-@login_required
-def version(request):
-    return render(request,'core/version.html')
 
 def login(request):
     if request.POST:
         usuario=request.POST.get("txtUsuario")
         password=request.POST.get("txtPass")
         us=authenticate(request,username=usuario,password=password)
-        msg=''    
         request.session["carritox"] = []        
-        print('realizado')
         if us is not None and us.is_active:
             login_autent(request,us)#autentificacion de login            
             return render(request,'core/index.html')
@@ -203,3 +223,41 @@ def carro_compras_menos(request,id):
     x=request.session["carritox"]    
     return render(request,'core/carro.html',{'x':x,'total':total})
 
+## APIS
+
+class FlorViewSet(viewsets.ModelViewSet):
+    queryset = Flor.objects.all()
+    serializer_class = FlorSerializer
+
+class CompraViewSet(viewsets.ModelViewSet):
+    queryset = Compra.objects.all()
+    serializer_class = CompraSerializer
+
+## NOTIFICACIONES PUSH
+
+@csrf_exempt
+@require_http_methods(['POST'])
+def guardar_token(request):
+    body = request.body.decode('utf-8')
+    bodyDict = json.loads(body)
+
+    token = bodyDict['token']
+
+    existe = FCMDevice.objects.filter(registration_id = token, active=True)
+
+    if len(existe) > 0:
+        return HttpResponseBadRequest(json.dumps({'mensaje':'el token ya existe, ja!'}))
+    
+    dispositivo = FCMDevice()
+    dispositivo.registration_id = token
+
+    # autentificacion del usuario
+
+    if request.user.is_authenticated:
+        dispositivo.user = request.user
+    
+    try:
+        dispositivo.save()
+        return HttpResponse(json.dumps({'mensaje':'token guardado'}))
+    except:
+        return HttpResponseBadRequest(json.dumps({'mensaje':'no se ha podido guardar'}))

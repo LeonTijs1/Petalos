@@ -58,3 +58,4 @@ function getCookie(name) {
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
 });
+

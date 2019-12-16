@@ -1,0 +1,25 @@
+body{
+	color: #262626;
+	background-color:#fafafa;
+	font-size:18px;
+	font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	font-weight:300;
+}
+h1{
+	font-weight: 300;
+	font-size:30px;
+}
+#rudr_userinfo{
+	display:flex;
+}
+div{
+	margin:20px;
+}
+img{
+	border-radius: 50%;
+}
+a{
+	color:#003569;
+	text-decoration:none;
+	font-weight:bold;
+}

@@ -10,10 +10,17 @@
     <ul class="navbar-nav m-auto">
     <center>
         <li class="nav-item active">
-            <h3 class="nav-link text-dark">{{msg}}</h3>                       
+            <h2 class="nav-link text-dark">{{msg}}</h2>                       
         </li>  
     </center>
     </ul>
+    <center>
+        <h3>¿Quieres agregar una nueva flor?</h3>
+        <a href="{% url 'FORM' %}"> Has Click Aqui </a> 
+                        
+    </center>
+    <br> 
+
     <div class="row">
         {% for f in lista %}
         <div class="flores">
