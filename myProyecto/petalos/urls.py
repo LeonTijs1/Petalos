@@ -26,5 +26,5 @@ urlpatterns = [
     path('grabar_carro/',grabar_carro,name='GRABAR_CARRO'),
     path('api/', include(router.urls)),
     path('guardar-token/',guardar_token, name='guardar_token'),
-
+    path('consejo',consejo,name='CONS')
 ]
