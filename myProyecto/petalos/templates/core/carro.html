@@ -42,13 +42,24 @@
     </table>
 </div>
 
+<<<<<<< HEAD
 <h5>¿Ya compraste flores o una planta? Haz click en el siguente enlace para ver un consejo para su cuidado</h5>
 <a href="{% url 'CONS' %}">Haz Click Aqui</a>
+=======
+<center>
+    <h3>¿Ya compraste una flor? Has click en el siguiente link para ver un consejo para tus nuevas flores </h3>
+    <a href="{% url 'CON' %}"> Has Click Aqui </a>                       
+</center>
+>>>>>>> 70acc0c6c0d952f59523e2a44a353f7e809e4da4
 <br>
 <div class="text-center">
   <img src="{% static 'img/delivery-trip.jpg' %}" class="rounded" alt="...">
 </div>
 <br>
 {{mensaje}}
+<br>
 </center>
+
+
+
 {% endblock contenido %}
