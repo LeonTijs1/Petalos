@@ -60,6 +60,9 @@ def formulario(request):
 def quienes(request):   
     return render(request,'core/quienes_somos.html')   
 
+def consejos(request):   
+    return render(request,'core/consejos.html')    
+
 @permission_required('petalos.add_flor')
 def eliminar_flor(request,id):  
     mensaje=''
