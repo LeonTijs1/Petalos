@@ -60,13 +60,8 @@ def formulario(request):
 def quienes(request):   
     return render(request,'core/quienes_somos.html')   
 
-<<<<<<< HEAD
 def consejo(request):
     return render(request,'core/consejo.html')
-=======
-def consejos(request):   
-    return render(request,'core/consejos.html')    
->>>>>>> 70acc0c6c0d952f59523e2a44a353f7e809e4da4
 
 @permission_required('petalos.add_flor')
 def eliminar_flor(request,id):  

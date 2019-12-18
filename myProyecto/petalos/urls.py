@@ -13,7 +13,6 @@ urlpatterns = [
     path('productos/',productos,name='PROD'),
     path('formulario/',formulario,name='FORM'),
     path('quienes/',quienes,name='WHO'),
-    path('consejos/',consejos,name="CON"),
     path('eliminar_flor/<id>/',eliminar_flor,name='ELIMINAR'),
     path('modificar_flor/<id>/',modificar_flor,name='MODIFICAR'),
     path('admistracion/',admistracion,name='ADMI'),
@@ -27,5 +26,5 @@ urlpatterns = [
     path('grabar_carro/',grabar_carro,name='GRABAR_CARRO'),
     path('api/', include(router.urls)),
     path('guardar-token/',guardar_token, name='guardar_token'),
-    path('consejo',consejo,name='CONS')
+    path('consejo/',consejo,name='CONS')
 ]
