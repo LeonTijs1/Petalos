@@ -11,3 +11,4 @@ y se pre instalo el inicio de sesion via facebook en el codigo interno
 v.0.1.6: Tablas boostrap, aclarado de footer, colores en los botones
 v.0.1.9: integracion de webservice a la pagina
 v.0.2: integracion de las notificaciones PUSH
+v.0.2.1: intregracion API de youtube para mostrar videos sobre cuidados botanicos
